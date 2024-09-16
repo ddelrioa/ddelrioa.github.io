@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Example</title>
+    <title>AR Example with Custom Marker</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <!-- Escena de A-Frame para realidad aumentada -->
     <a-scene embedded arjs>
-      <!-- Patrón de marcador AR -->
-      <a-marker preset="hiro">
-        <!-- Modelo 3D o elemento AR -->
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
+      <!-- Usar un marcador personalizado en vez de "hiro" -->
+      <a-marker type="pattern" url="tu-marcador.patt">
+        <!-- Cargar un modelo 3D GLTF cuando se detecta el marcador -->
+        <a-entity 
+          gltf-model="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r125/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf" 
+          scale="0.5 0.5 0.5" 
+          position="0 0 0" 
+          rotation="0 180 0">
+        </a-entity>
       </a-marker>
+      <!-- Cámara AR -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
