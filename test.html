@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>AR Example with Custom Marker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR with Image Marker</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <!-- Escena de A-Frame para realidad aumentada -->
-    <a-scene embedded arjs>
-      <!-- Usar un marcador personalizado -->
-      <a-marker type="pattern" url="https://ddelrioa.github.io/pattern-marker.png" 
-                emitevents="true">
-        <!-- Mostrar un texto cuando se detecta el marcador -->
-        <a-text value="¡Marcador Detectado!" position="0 0.5 0" scale="2 2 2" color="red"></a-text>
-        <!-- Añadir un cubo como feedback visual -->
-        <a-box position="0 0.5 0" rotation="0 45 0" color="blue" depth="0.3" height="0.3" width="0.3"></a-box>
-        
-        <!-- Cargar un modelo 3D (T-Rex) cuando se detecte el marcador -->
-        <a-entity gltf-model="https://cdn.aframe.io/link-traversal/models/trex/scene.gltf" 
+    <a-scene embedded arjs='sourceType: webcam; trackingMethod: best;'>
+      <!-- Usar un marcador de imagen -->
+      <a-marker type="image" url="https://ddelrioa.github.io/pattern-marker.png"  emitevents="true">
+        <!-- Mostrar un modelo 3D cuando se detecta el marcador -->
+        <a-entity gltf-model="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/ToyCar/glTF/ToyCar.gltf" 
                   position="0 0 0" 
-                  scale="6 6 6" 
+                  scale="0.5 0.5 0.5" 
                   rotation="0 180 0" 
                   crossOrigin="anonymous">
         </a-entity>
@@ -34,11 +30,11 @@
       const marker = document.querySelector('a-marker');
 
       marker.addEventListener('markerFound', () => {
-        console.log('Marcador detectado');
+        console.log('Marcador de imagen detectado');
       });
 
       marker.addEventListener('markerLost', () => {
-        console.log('Marcador perdido');
+        console.log('Marcador de imagen perdido');
       });
     </script>
   </body>
