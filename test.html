@@ -9,12 +9,29 @@
     <!-- Escena de A-Frame para realidad aumentada -->
     <a-scene embedded arjs>
       <!-- Usar un marcador personalizado -->
-      <a-marker type="pattern" url="https://ddelrioa.github.io/pattern-marker%20(1).patt">
+      <a-marker type="pattern" url="https://ddelrioa.github.io/pattern-marker%20(1).patt" 
+                emitevents="true">
         <!-- Mostrar un texto cuando se detecta el marcador -->
-        <a-text value="Hola" position="0 0.5 0" scale="2 2 2" color="red"></a-text>
+        <a-text value="¡Marcador Detectado!" position="0 0.5 0" scale="2 2 2" color="red"></a-text>
+        <!-- Añadir un cubo como feedback visual -->
+        <a-box position="0 0.5 0" rotation="0 45 0" color="blue" depth="0.3" height="0.3" width="0.3"></a-box>
       </a-marker>
+
       <!-- Cámara AR -->
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      // Añadir feedback en la consola cuando el marcador sea detectado
+      const marker = document.querySelector('a-marker');
+
+      marker.addEventListener('markerFound', () => {
+        console.log('Marcador detectado');
+      });
+
+      marker.addEventListener('markerLost', () => {
+        console.log('Marcador perdido');
+      });
+    </script>
   </body>
 </html>
